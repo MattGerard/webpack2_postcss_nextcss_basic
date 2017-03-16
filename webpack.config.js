@@ -49,33 +49,33 @@ module.exports = function(env) {
 					loaders: ['url-loader?limit=10000&name=img/[hash:12].[ext]'],
 					exclude: '/node_modules/'
 				}, {
-            test: /\.css$/,
-            use: extractCSS.extract({
-                use: [{
-                    loader: 'css-loader',
-                    options: {
-                      importLoaders: 1
-                    }
-                },
-                {
-                  loader: 'postcss-loader',
-                  options: {
-                      plugins: function () {
+						test: /\.css$/,
+						use: extractCSS.extract({
+								use: [{
+										loader: 'css-loader',
+										options: {
+											importLoaders: 1
+										}
+								},
+								{
+									loader: 'postcss-loader',
+									options: {
+											plugins: function () {
 												return [
 													require('precss'),
 													require('postcss-cssnext') ({
 														browsers: ['last 2 versions', '> 5%']
 													})
 												];
-                      }
-                  }
-                }
-              ],
-                // use style-loader in development
-                fallback: "style-loader"
-            }),
+											}
+									}
+								}
+							],
+								// use style-loader in development
+								fallback: "style-loader"
+						}),
 						exclude: '/node_modules/'
-        }]
+				}]
 			},
 			output: {
 					path: path.join(__dirname, './dist/'),
